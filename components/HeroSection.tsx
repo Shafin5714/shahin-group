@@ -88,9 +88,14 @@ export function HeroSection() {
             </motion.div>
 
             {/* Angular Divider Transition */}
-            <div className="absolute bottom-0 left-0 w-full text-background-light dark:text-background-dark z-20">
+            <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 1, delay: 0.5 }}
+                className="absolute bottom-0 left-0 w-full text-background-light dark:text-background-dark z-20"
+            >
                 <AngularDividerBottom />
-            </div>
+            </motion.div>
         </section>
     );
 }
