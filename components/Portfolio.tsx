@@ -45,8 +45,69 @@ export function Portfolio() {
                 <AngularDividerTop />
             </div>
 
+            {/* Enhanced Background Design */}
+            {/* Animated Gradient Orbs */}
+            <motion.div
+                animate={{
+                    scale: [1, 1.2, 1],
+                    opacity: [0.03, 0.05, 0.03],
+                }}
+                transition={{
+                    duration: 8,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                }}
+                className="absolute top-20 -left-20 w-[500px] h-[500px] bg-primary rounded-full blur-3xl"
+            />
+            <motion.div
+                animate={{
+                    scale: [1.2, 1, 1.2],
+                    opacity: [0.05, 0.03, 0.05],
+                }}
+                transition={{
+                    duration: 10,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                }}
+                className="absolute bottom-20 -right-20 w-[600px] h-[600px] bg-accent rounded-full blur-3xl"
+            />
+            <motion.div
+                animate={{
+                    x: [0, 100, 0],
+                    y: [0, -50, 0],
+                    opacity: [0.02, 0.04, 0.02],
+                }}
+                transition={{
+                    duration: 15,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                }}
+                className="absolute top-1/2 left-1/2 w-[400px] h-[400px] bg-primary rounded-full blur-3xl"
+            />
+
+            {/* Geometric Grid Pattern */}
+            <div className="absolute inset-0 opacity-[0.015] dark:opacity-[0.01]">
+                <div
+                    className="absolute inset-0"
+                    style={{
+                        backgroundImage: `linear-gradient(rgba(197, 160, 89, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(197, 160, 89, 0.1) 1px, transparent 1px)`,
+                        backgroundSize: '100px 100px',
+                    }}
+                />
+            </div>
+
+            {/* Diagonal Stripes */}
+            <div className="absolute inset-0 opacity-[0.02] dark:opacity-[0.01]">
+                <div
+                    className="absolute inset-0"
+                    style={{
+                        backgroundImage: `repeating-linear-gradient(45deg, transparent, transparent 50px, rgba(197, 160, 89, 0.15) 50px, rgba(197, 160, 89, 0.15) 51px)`,
+                    }}
+                />
+            </div>
+
             {/* Background Shards */}
-            <ShardShape className="opacity-30" />
+            <ShardShape className="opacity-20" />
 
             {/* Large Watermark */}
             <div className="absolute top-20 left-0 w-full overflow-hidden pointer-events-none opacity-[0.03] dark:opacity-[0.05]">
@@ -54,6 +115,7 @@ export function Portfolio() {
                     Excellence
                 </h1>
             </div>
+
 
             <div className="container max-w-7xl mx-auto px-6 relative z-10">
                 <div className="flex flex-col md:flex-row justify-between items-end mb-20 md:mb-32">

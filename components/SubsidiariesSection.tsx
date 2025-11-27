@@ -79,11 +79,55 @@ const cardVariants: Variants = {
 export function SubsidiariesSection() {
     return (
         <section className="py-20 md:py-32 bg-gradient-to-b from-background-light to-gray-50 dark:from-background-dark dark:to-gray-900 relative overflow-hidden">
-            {/* Decorative background elements */}
-            <div className="absolute inset-0 opacity-[0.03] dark:opacity-[0.02]">
-                <div className="absolute top-0 left-0 w-96 h-96 bg-primary rounded-full blur-3xl"></div>
-                <div className="absolute bottom-0 right-0 w-96 h-96 bg-accent rounded-full blur-3xl"></div>
+            {/* Enhanced Background Design */}
+            {/* Animated Gradient Orbs with different timings */}
+
+            {/* Elegant Hexagonal Grid Pattern */}
+            <div className="absolute inset-0 opacity-[0.12] dark:opacity-[0.09]">
+                <div
+                    className="absolute inset-0"
+                    style={{
+                        backgroundImage: `url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%23C5A059' stroke-width='1.5'%3E%3Cpath d='M50 10L80 30L80 70L50 90L20 70L20 30Z' opacity='0.5'/%3E%3Cline x1='0' y1='50' x2='100' y2='50' opacity='0.3'/%3E%3Cline x1='50' y1='0' x2='50' y2='100' opacity='0.3'/%3E%3C/g%3E%3C/svg%3E")`,
+                        backgroundSize: '100px 100px',
+                    }}
+                />
             </div>
+
+            {/* Diagonal Gradient Lines */}
+            <div className="absolute inset-0 opacity-[0.02] dark:opacity-[0.01] pointer-events-none">
+                <div
+                    className="absolute inset-0"
+                    style={{
+                        backgroundImage: `repeating-linear-gradient(-45deg, transparent, transparent 80px, rgba(197, 160, 89, 0.1) 80px, rgba(197, 160, 89, 0.1) 81px)`,
+                    }}
+                />
+            </div>
+
+            {/* Floating Squares */}
+            <motion.div
+                animate={{
+                    y: [0, -30, 0],
+                    rotate: [0, 90, 0],
+                }}
+                transition={{
+                    duration: 15,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                }}
+                className="absolute top-32 right-32 w-20 h-20 border border-primary/20 opacity-30"
+            />
+            <motion.div
+                animate={{
+                    y: [0, 30, 0],
+                    rotate: [0, -90, 0],
+                }}
+                transition={{
+                    duration: 18,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                }}
+                className="absolute bottom-32 left-32 w-16 h-16 border border-primary/20 opacity-30"
+            />
 
             <div className="container mx-auto px-6 relative z-10">
                 {/* Section Header */}
@@ -206,6 +250,6 @@ export function SubsidiariesSection() {
                     ))}
                 </motion.div>
             </div>
-        </section>
+        </section >
     );
 }
