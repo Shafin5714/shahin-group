@@ -5,7 +5,10 @@ import Link from 'next/link';
 import { Menu, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
+import { useLoading } from '@/context/LoadingContext';
+
 export function Header() {
+    const { isLoading } = useLoading();
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -25,7 +28,10 @@ export function Header() {
     ];
 
     return (
-        <header
+        <motion.header
+            initial={{ y: -100, opacity: 0 }}
+            animate={!isLoading ? { y: 0, opacity: 1 } : { y: -100, opacity: 0 }}
+            transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}
             className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-background/90 backdrop-blur-md py-4 shadow-sm' : 'bg-transparent py-6'
                 }`}
         >
@@ -92,6 +98,6 @@ export function Header() {
                     )}
                 </AnimatePresence>
             </div>
-        </header>
+        </motion.header>
     );
 }
