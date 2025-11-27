@@ -48,19 +48,31 @@ export function Portfolio() {
             {/* Background Shards */}
             <ShardShape className="opacity-30" />
 
+            {/* Large Watermark */}
+            <div className="absolute top-20 left-0 w-full overflow-hidden pointer-events-none opacity-[0.03] dark:opacity-[0.05]">
+                <h1 className="text-[15vw] font-display font-bold text-foreground leading-none tracking-tighter text-center uppercase">
+                    Excellence
+                </h1>
+            </div>
+
             <div className="container max-w-7xl mx-auto px-6 relative z-10">
-                <div className="flex flex-col md:flex-row justify-between items-end mb-16 md:mb-24">
+                <div className="flex flex-col md:flex-row justify-between items-end mb-20 md:mb-32">
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.6 }}
+                        className="relative"
                     >
-                        <h4 className="text-primary text-sm uppercase tracking-[0.2em] font-bold mb-4">
-                            Our Business
+                        <div className="absolute -left-6 -top-6 w-12 h-12 border-l-2 border-t-2 border-primary/30" />
+                        <h4 className="text-primary text-sm uppercase tracking-[0.3em] font-bold mb-4 pl-2">
+                            Our Portfolio
                         </h4>
-                        <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-foreground">
-                            Featured <span className="text-primary">Projects</span>
+                        <h2 className="font-display text-5xl md:text-7xl font-bold text-foreground leading-tight">
+                            Featured <br />
+                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-primary/60">
+                                Projects
+                            </span>
                         </h2>
                     </motion.div>
 
@@ -69,59 +81,92 @@ export function Portfolio() {
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.6, delay: 0.2 }}
-                        className="hidden md:flex items-center gap-2 text-foreground hover:text-primary transition-colors uppercase tracking-widest text-sm font-bold group"
+                        className="hidden md:flex items-center gap-4 group"
                     >
-                        View All Projects
-                        <ArrowUpRight className="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                        <span className="text-sm font-bold uppercase tracking-widest text-foreground group-hover:text-primary transition-colors">
+                            View All Works
+                        </span>
+                        <div className="w-12 h-12 rounded-full border border-foreground/20 flex items-center justify-center group-hover:bg-primary group-hover:border-primary transition-all duration-300">
+                            <ArrowUpRight className="w-5 h-5 text-foreground group-hover:text-white transition-colors" />
+                        </div>
                     </motion.button>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
-                    {projects.map((project, index) => (
-                        <motion.div
-                            key={project.id}
-                            initial={{ opacity: 0, y: 30 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.6, delay: index * 0.1 }}
-                            className="group relative h-[400px] md:h-[500px] overflow-hidden cursor-pointer"
-                        >
-                            {/* Decorative Corner Frames */}
-                            <div className="absolute top-4 left-4 w-16 h-16 border-l-4 border-t-4 border-primary/0 group-hover:border-primary z-30 transition-colors duration-500" />
-                            <div className="absolute bottom-4 right-4 w-16 h-16 border-r-4 border-b-4 border-primary/0 group-hover:border-primary z-30 transition-colors duration-500" />
+                <div className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8">
+                    {projects.map((project, index) => {
+                        // Asymmetrical Grid Logic
+                        const isLarge = index === 0 || index === 3;
+                        const colSpan = index === 0 ? "md:col-span-8" :
+                            index === 1 ? "md:col-span-4" :
+                                index === 2 ? "md:col-span-5" : "md:col-span-7";
 
-                            <Image
-                                src={project.image}
-                                alt={project.title}
-                                fill
-                                className="object-cover transition-transform duration-700 group-hover:scale-110"
-                            />
-                            {/* Overlay */}
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-80 transition-opacity duration-300" />
+                        const height = index === 1 || index === 2 ? "h-[500px] md:h-[600px]" : "h-[400px] md:h-[500px]";
 
-                            {/* Content */}
-                            <div className="absolute bottom-0 left-0 w-full p-8 md:p-12 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                                <p className="text-primary text-xs uppercase tracking-widest mb-2 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
-                                    {project.category}
-                                </p>
-                                <h3 className="font-display text-3xl md:text-4xl font-bold text-white mb-2">
-                                    {project.title}
-                                </h3>
-                                <p className="text-gray-300 font-body text-sm md:text-base max-w-md opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-200">
-                                    {project.description}
-                                </p>
-                            </div>
+                        return (
+                            <motion.div
+                                key={project.id}
+                                initial={{ opacity: 0, y: 50 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true, margin: "-100px" }}
+                                transition={{ duration: 0.8, delay: index * 0.1 }}
+                                className={`group relative ${colSpan} ${height} overflow-hidden bg-gray-900`}
+                            >
+                                {/* Image Container */}
+                                <div className="absolute inset-0 w-full h-full overflow-hidden">
+                                    <Image
+                                        src={project.image}
+                                        alt={project.title}
+                                        fill
+                                        className="object-cover transition-transform duration-1000 group-hover:scale-110"
+                                    />
+                                    <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors duration-500" />
+                                    {/* Noise Texture */}
+                                    <div className="absolute inset-0 opacity-[0.15] mix-blend-overlay" style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")` }} />
+                                </div>
 
-                            {/* Hover Border Effect */}
-                            <div className="absolute inset-0 border-2 border-primary/0 group-hover:border-primary/50 transition-colors duration-500 m-4" />
-                        </motion.div>
-                    ))}
+                                {/* Content Overlay */}
+                                <div className="absolute inset-0 p-8 md:p-10 flex flex-col justify-between z-20">
+                                    <div className="flex justify-between items-start">
+                                        <span className="text-6xl font-display font-bold text-white/10 group-hover:text-white/20 transition-colors duration-500">
+                                            0{index + 1}
+                                        </span>
+                                        <div className="w-10 h-10 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-500">
+                                            <ArrowUpRight className="w-5 h-5 text-white" />
+                                        </div>
+                                    </div>
+
+                                    <div className="transform translate-y-8 group-hover:translate-y-0 transition-transform duration-500">
+                                        <div className="overflow-hidden mb-2">
+                                            <p className="text-primary text-xs uppercase tracking-[0.2em] font-bold transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 delay-100">
+                                                {project.category}
+                                            </p>
+                                        </div>
+                                        <h3 className="font-display text-2xl md:text-4xl font-bold text-white mb-3 leading-tight">
+                                            {project.title}
+                                        </h3>
+                                        <div className="h-0 group-hover:h-auto overflow-hidden transition-all duration-500">
+                                            <p className="text-gray-300 text-sm md:text-base max-w-md opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-200 pb-2">
+                                                {project.description}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {/* Decorative Borders */}
+                                <div className="absolute top-0 left-0 w-full h-full p-4 pointer-events-none">
+                                    <div className="w-full h-full border border-white/10 group-hover:border-primary/50 transition-colors duration-500 relative">
+                                        <div className="absolute top-0 left-0 w-2 h-2 border-l-2 border-t-2 border-primary opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                                        <div className="absolute bottom-0 right-0 w-2 h-2 border-r-2 border-b-2 border-primary opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                                    </div>
+                                </div>
+                            </motion.div>
+                        );
+                    })}
                 </div>
 
-                <div className="mt-12 text-center md:hidden">
-                    <button className="inline-flex items-center gap-2 text-foreground hover:text-primary transition-colors uppercase tracking-widest text-sm font-bold">
+                <div className="mt-16 text-center md:hidden">
+                    <button className="inline-flex items-center gap-2 px-8 py-4 bg-primary text-white text-sm font-bold uppercase tracking-widest hover:bg-primary-dark transition-colors">
                         View All Projects
-                        <ArrowUpRight className="w-5 h-5" />
                     </button>
                 </div>
             </div>
