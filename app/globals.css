@@ -113,34 +113,6 @@
   --sidebar-foreground: #fafafa;
   --sidebar-primary: #a1a1aa;
   --sidebar-primary-foreground: #09090b;
-  --sidebar-accent: #27272a;
-  --sidebar-accent-foreground: #fafafa;
-  --sidebar-border: #27272a;
-  --sidebar-ring: #a1a1aa;
-}
-
-@layer base {
-  * {
-    @apply border-border outline-ring/50;
-  }
-
-  body {
-    @apply bg-background text-foreground font-body antialiased;
-  }
-
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    @apply font-display;
-  }
-}
-
-/* Custom Utilities */
-.text-gold {
-  color: var(--color-brand-gold);
 }
 
 .bg-gold {

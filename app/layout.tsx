@@ -21,6 +21,8 @@ export const metadata: Metadata = {
   description: "Shahin Group: Visionary Architecture, Luxury Development, Global Media.",
 };
 
+import CustomCursor from "@/components/CustomCursor";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -34,6 +36,7 @@ export default function RootLayout({
       <body
         className={`${cormorantGaramond.variable} ${poppins.variable} antialiased bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark`}
       >
+        <CustomCursor />
         {children}
       </body>
     </html>
