@@ -23,6 +23,7 @@ export function Header() {
     const navLinks = [
         { name: 'Who are we?', href: '/about' },
         { name: 'Projects', href: '/projects' },
+        { name: 'Careers', href: '/careers' },
         { name: 'Contact', href: '#contact' },
     ];
 
